@@ -1,24 +1,39 @@
 //Definição do express
 const express = require('express')
 
-//Definição mongoose
-const mongoose = require('mongoose')
+const cors = require('cors')
 
-//String de conexão para conectar ao MongoDB
-mongoose.connect(ConstApp.connectionString)
+//Definição mongoose (facilita operações para o MongoDB)
+const mongoose = require('mongoose')
 
 //Instância do express
 const app = express()
 
-//Porta que a aplicação será executada
-const port = 3000
+//app.use(cors)
 
-//Requisição do tipo get
-app.get('/', (request, response)=> {
-    response.send('teste')
-})
+//Leitura de requisição em json
+app.use(express.json())
+
+//Instância do banco de dados
+const connectDB = require('./db/connect_db.js')
+
+connectDB()
+
+//Routes
+const routes = require("./routes/router")
+
+app.use("/api", routes)
+
+/*app.get('/', (req, res)=> {
+    res.send('teste')
+})*/
+
+const port = 4000;
+
 
 //Aplicação fica escutando a porta definida
 app.listen(port, ()=> {
+   
+   
     console.log('app ok')
 })
