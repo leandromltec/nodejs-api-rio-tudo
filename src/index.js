@@ -13,16 +13,17 @@ const app = express()
 
 //Leitura de requisição em json
 app.use(express.json())
-
 //Instância do banco de dados
 const connectDB = require('./db/connect_db.js')
+
+
 
 connectDB()
 
 //Routes
 const routes = require("./routes/router")
 
-app.use("/api", routes)
+app.use("/", routes)
 
 /*app.get('/', (req, res)=> {
     res.send('teste')

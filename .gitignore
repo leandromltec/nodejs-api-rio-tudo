@@ -130,3 +130,6 @@ dist
 .pnp.*
 
 src/const
+dev.env
+prod.env
+.env
